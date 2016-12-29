@@ -1,0 +1,121 @@
+tr.hidden {
+    display:none;
+}
+
+#page-top {
+    height: 70px;
+    background-color: #da0000b3;
+    padding: 10px 15px;
+    border-bottom: 30px solid white;
+}
+
+body {
+    background-image: url("../images/texture.png");
+}
+
+h2 {
+    font-family: Oxygen;
+}
+
+#wrapper {
+
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+
+}
+
+.form-group {
+    float: left;
+    width: 100%;
+    padding: 5px 25px;
+    border-left: 2px solid #ffea00;
+}
+
+.form-group label {
+    font-size: 17px;
+    float: left;
+    font-family: Oxygen;
+    font-weight:300;
+}
+
+.form-control {
+    width: 280px;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    padding: 5px 10px;
+    clear: both;
+    float: left;
+    font-family: Oxygen;
+}
+
+.form-msg {
+    font-size: 12px;
+    color: grey;
+    float: left;
+    clear: both;
+}
+
+#content {
+    background-color: white;
+    min-height: 307px;
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+    padding: 5px 25px;
+    box-sizing: border-box;
+}
+
+#page-top label{
+    margin-left:20px;
+    color:white;
+    font-family:Oxygen;
+}
+
+#page-top a{
+    color:white;
+    margin-left:5px;
+}
+
+#login , #password {
+    margin-left:8px;
+}
+
+.invalid  {
+    border-left: 2px solid red;
+}
+
+.invalid .form-msg {
+    color:red;
+}
+
+.ok {
+    border-left:2px solid green;
+}
+
+.ok .form-msg {
+    color:grey;
+}
+
+.exists input:after {
+    content: "Username already exists";
+    display:inline;
+    color:red;
+}
+
+#reg input[type="submit"] {
+    width: 190px;
+    margin-left: 27px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+#reg input[type="submit"]:hover {
+    background-color:#ffc2c2;
+
+}
