@@ -19,8 +19,9 @@
         <div id="bank-card-select" class="form-input">
         <label>Select bank card</label>
         <select name="card_select">
+
             <c:forEach items="${requestScope.cards}" var="card">
-            <option value="${card.getCardNo()}">${card.getCardNo()} - ${card.getName()}</option>
+            <option value="${card.getCardNo()}">**** **** **** ${card.getCardNo()} - ${card.getName()}</option>
             </c:forEach>
         </select>
             <a id="card-reset">reset</a>
@@ -80,7 +81,7 @@
             <select name="card-filter">
                <option label=" "></option>
               <c:forEach items="${requestScope.cards}" var="card">
-                  <option value="${card.getCardNo()}">${card.getCardNo()} - ${card.getName()}</option>
+                  <option value="${card.getCardNo()}">**** **** **** ${card.getCardNo()} - ${card.getName()}</option>
               </c:forEach>
             </select>
         </div>

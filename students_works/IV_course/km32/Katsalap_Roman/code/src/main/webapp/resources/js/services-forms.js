@@ -34,15 +34,15 @@ $(function() {
                 $("#amount").addClass("invalid");
                 prevent = true;
             }
-            if (!isValidCard(card)) {
-                if (from_select) {
-                    $("#bank-card-select").addClass("invalid");
-                }
-                else {
+            if (!from_select)  {
+                if (!isValidCard(card)) {
+
                     $("#cards").addClass("invalid");
+
+                    prevent = true;
                 }
-                prevent = true;
             }
+
             if (!from_select) {
                 if (!isValidDate(expire_month,expire_year)) {
                     $("#expire").addClass("invalid");

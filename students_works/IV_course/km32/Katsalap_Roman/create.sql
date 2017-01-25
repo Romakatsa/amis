@@ -1,198 +1,181 @@
-/*==============================================================*/
-/* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     25.12.2016 23:22:11                           */
-/*==============================================================*/
+alter table CARDS
+   drop constraint FK_CARDS_USER_CARD_USERS;
 
+alter table PAYMENTS
+   drop constraint FK_PAYMENTS_PAYMENT_C_CARDS;
 
-alter table Cards
-   drop constraint "FK_CARDS_HAS CARD_USER";
+alter table PAYMENTS
+   drop constraint FK_PAYMENTS_PAYMENT_P_USERS_PH;
 
-alter table Payment
-   drop constraint "FK_PAYMENT_FILL PHON_USER_PHO";
+alter table USERS_ACCOUNT_STATUSES
+   drop constraint FK_USERS_AC_ACCOUNT_S_USERS;
 
-alter table Payment
-   drop constraint "FK_PAYMENT_PAY WITH_CARDS";
+alter table USERS_ACCOUNT_STATUSES
+   drop constraint FK_USERS_AC_ACCOUNTS__ACCOUNT_;
 
-alter table User_Phones
-   drop constraint "FK_USER_PHO_HAS PHONE_USER";
+alter table USERS_PHONES
+   drop constraint FK_USERS_PH_USER_PHON_USERS;
 
-alter table User_account_statuses
-   drop constraint "FK_USER_ACC_ACCOUNT H_USER";
+drop table ACCOUNT_STATUSES cascade constraints;
 
-alter table User_account_statuses
-   drop constraint "FK_USER_ACC_ACCOUNTS _ACCOUNT";
+drop index user_card_fk;
 
-drop table Account_statuses cascade constraints;
+drop table CARDS cascade constraints;
 
-drop index has_card_FK;
+drop index payment_card_fk;
 
-drop table Cards cascade constraints;
+drop index payment_phone_fk;
 
-drop index pay_with_FK;
-
-drop index fill_phone_FK;
-
-drop table Payment cascade constraints;
+drop table PAYMENTS cascade constraints;
 
 drop table USERS cascade constraints;
 
-drop index has_phone_FK;
+drop index account_statuses_fk;
 
-drop table User_Phones cascade constraints;
+drop index accounts_statuses_fk;
 
-drop index account_had_statuses_FK;
+drop table USERS_ACCOUNT_STATUSES cascade constraints;
 
-drop index accounts has statuses_FK;
+drop index user_phone_fk;
 
-drop table User_account_statuses cascade constraints;
+drop table USERS_PHONES cascade constraints;
 
 /*==============================================================*/
-/* Table: "Account statuses"                                    */
+/* Table: ACCOUNT_STATUSES                                      */
 /*==============================================================*/
-create table Account_statuses 
+create table ACCOUNT_STATUSES 
 (
-   status_name      VARCHAR2(12)         not null,
-   status_description    CLOB,
-   constraint "PK_ACCOUNT STATUSES" primary key ("status_name")
+   status_name          VARCHAR2(12)         not null,
+   status_description   CLOB,
+   constraint PK_ACCOUNT_STATUSES primary key (status_name)
 );
 
 /*==============================================================*/
-/* Table: "Cards"                                               */
+/* Table: CARDS                                                 */
 /*==============================================================*/
-create table Cards
+create table CARDS 
 (
-   CardNo         VARCHAR2(16)         not null,
-   login              VARCHAR2(30)         not null,
-   Token              VARCHAR2(25)         not null,
-   CardName          VARCHAR2(30),
-   constraint PK_CARDS primary key ("CardNo")
+   card_no              VARCHAR2(16)         not null,
+   login                VARCHAR2(30)         not null,
+   token                VARCHAR2(25)         not null,
+   card_name            VARCHAR2(30),
+   constraint PK_CARDS primary key (card_no)
 );
 
 /*==============================================================*/
-/* Index: "has card_FK"                                         */
+/* Index: user_card_fk                                          */
 /*==============================================================*/
-create index has_card_FK on Cards (
+create index user_card_fk on CARDS (
    login ASC
 );
 
 /*==============================================================*/
-/* Table: "Payment"                                             */
+/* Table: PAYMENTS                                              */
 /*==============================================================*/
-create table "Payment" 
+create table PAYMENTS 
 (
-   payment_id         INTEGER              not null	AUTO_INCREMENT,
-   CardNo           VARCHAR2(16)         not null,
-   login             VARCHAR2(30)         not null,
-   phone_number       VARCHAR2(10)         not null,
-   paydate             TIMESTAMP            not null,
-   amount             NUMBER(4,2)          not null,
-   constraint PK_PAYMENT primary key (payment_id)
+   payment_id           INTEGER              not null,
+   login                VARCHAR2(30)         not null,
+   phone_number         VARCHAR2(10)         not null,
+   card_no              VARCHAR2(16)         not null,
+   "date"               TIMESTAMP            not null,
+   amount               NUMBER(4,2)          not null,
+   constraint PK_PAYMENTS primary key (payment_id)
 );
 
 /*==============================================================*/
-/* Index: "fill phone_FK"                                       */
+/* Index: payment_phone_fk                                      */
 /*==============================================================*/
-create index fill_phone_FK on Payment (
+create index payment_phone_fk on PAYMENTS (
    login ASC,
    phone_number ASC
 );
 
 /*==============================================================*/
-/* Index: "pay with_FK"                                         */
+/* Index: payment_card_fk                                       */
 /*==============================================================*/
-create index pay_with_FK on Payment (
-   CardNo ASC
+create index payment_card_fk on PAYMENTS (
+   card_no ASC
 );
 
 /*==============================================================*/
-/* Table: "User"                                                */
+/* Table: USERS                                                 */
 /*==============================================================*/
-create table USERS
+create table USERS 
 (
-   login              VARCHAR2(30)         not null,
-   email              VARCHAR2(50)         not null,
-   hash               VARCHAR2(60)         not null,
-   salt              VARCHAR2(30)         not null,
-   user_role          VARCHAR2(15),
-   constraint PK_USER primary key (login)
+   login                VARCHAR2(30)         not null,
+   email                VARCHAR2(50)         not null,
+   hash_pass            VARCHAR2(60)         not null,
+   salt                 VARCHAR2(30)         not null,
+   hash_link            VARCHAR2(10),
+   is_admin             SMALLINT,
+   constraint PK_USERS primary key (login)
 );
 
 /*==============================================================*/
-/* Table: "User_Phones"                                         */
+/* Table: USERS_ACCOUNT_STATUSES                                */
 /*==============================================================*/
-create table User_Phones 
+create table USERS_ACCOUNT_STATUSES 
 (
-   login              VARCHAR2(30)         not null,
-   phone_number       VARCHAR2(10)         not null,
-   phone_name         VARCHAR2(40),
-   constraint PK_USER_PHONES primary key (login, phone_number)
+   login                VARCHAR2(30)         not null,
+   status_name          VARCHAR2(12)         not null,
+   date_of_status       TIMESTAMP            not null,
+   status_message       CLOB,
+   constraint PK_USERS_ACCOUNT_STATUSES primary key (login, status_name, date_of_status)
 );
 
 /*==============================================================*/
-/* Index: "has phone_FK"                                        */
+/* Index: accounts_statuses_fk                                  */
 /*==============================================================*/
-create index has_phone_FK on User_Phones (
-   login ASC
-);
-
-/*==============================================================*/
-/* Table: "User_account_statuses"                               */
-/*==============================================================*/
-create table User_account_statuses 
-(
-   status_name       VARCHAR2(12)         not null,
-   login              VARCHAR2(30)         not null,
-   date_of_status     TIMESTAMP,
-   constraint PK_USER_ACCOUNT_STATUSES primary key (login, status_name)
-);
-
-/*==============================================================*/
-/* Index: "accounts has statuses_FK"                            */
-/*==============================================================*/
-create index accounts_has_statuses_FK on User_account_statuses (
+create index accounts_statuses_fk on USERS_ACCOUNT_STATUSES (
    status_name ASC
 );
 
 /*==============================================================*/
-/* Index: "account had statuses_FK"                             */
+/* Index: account_statuses_fk                                   */
 /*==============================================================*/
-create index account_had_statuses_FK on User_account_statuses (
+create index account_statuses_fk on USERS_ACCOUNT_STATUSES (
    login ASC
 );
 
-alter table Cards
-   add constraint FK_CARDS_HAS_CARD_USER foreign key (login)
-      references Users (login);
+/*==============================================================*/
+/* Table: USERS_PHONES                                          */
+/*==============================================================*/
+create table USERS_PHONES 
+(
+   login                VARCHAR2(30)         not null,
+   phone_number         VARCHAR2(10)         not null,
+   phone_name           VARCHAR2(40),
+   constraint PK_USERS_PHONES primary key (login, phone_number)
+);
 
-alter table Payment
-   add constraint "FK_PAYMENT_FILL PHON_USER_PHO" foreign key (login, phone_number)
-      references User_Phones (login, phone_number);
+/*==============================================================*/
+/* Index: user_phone_fk                                         */
+/*==============================================================*/
+create index user_phone_fk on USERS_PHONES (
+   login ASC
+);
 
-alter table Payment
-   add constraint "FK_PAYMENT_PAY WITH_CARDS" foreign key (CardNo)
-      references Cards (CardNo);
+alter table CARDS
+   add constraint FK_CARDS_USER_CARD_USERS foreign key (login)
+      references USERS (login);
 
-alter table User_Phones
-   add constraint "FK_USER_PHO_HAS PHONE_USER" foreign key (login)
-      references Usesr (login);
+alter table PAYMENTS
+   add constraint FK_PAYMENTS_PAYMENT_C_CARDS foreign key (card_no)
+      references CARDS (card_no);
 
-alter table User_account_statuses
-   add constraint "FK_USER_ACC_ACCOUNT H_USER" foreign key (login)
-      references Users (login);
+alter table PAYMENTS
+   add constraint FK_PAYMENTS_PAYMENT_P_USERS_PH foreign key (login, phone_number)
+      references USERS_PHONES (login, phone_number);
 
-alter table User_account_statuses
-   add constraint "FK_USER_ACC_ACCOUNTS _ACCOUNT" foreign key (status_name)
-      references Account_statuses (status_name);
+alter table USERS_ACCOUNT_STATUSES
+   add constraint FK_USERS_AC_ACCOUNT_S_USERS foreign key (login)
+      references USERS (login);
 
+alter table USERS_ACCOUNT_STATUSES
+   add constraint FK_USERS_AC_ACCOUNTS__ACCOUNT_ foreign key (status_name)
+      references ACCOUNT_STATUSES (status_name);
 
-/*VIEW*/
-
-CREATE VIEW CARDSPAYMENTS
-AS SELECT P.payment_id payment_ID,
-P.paydate PAYDATE,
-P.amount AMOUNT,
-P.phone_number PHONE_NUMBER,
-P.CardNo CARDNO,
-C.Token TOKEN,
-C.CardName CARDNAME,
-C.login LOGIN FROM Payment P JOIN Cards  C ON P.CardNo = C.CardNo;
+alter table USERS_PHONES
+   add constraint FK_USERS_PH_USER_PHON_USERS foreign key (login)
+      references USERS (login);

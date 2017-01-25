@@ -33,7 +33,7 @@ $(function() {
                         $(this).addClass("hidden");
                     }
 
-                    var tr_card = $(this).find("td.payment_CardNo").text();
+                    var tr_card = $(this).find("td.payment_CardNo").text().substring(15);
                     if ((tr_card !== card) && (!emptyCard)) {
                         $(this).addClass("hidden");
                     }

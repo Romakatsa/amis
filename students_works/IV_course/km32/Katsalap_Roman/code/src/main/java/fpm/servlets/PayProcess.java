@@ -57,7 +57,7 @@ public class PayProcess extends HttpServlet {
             String cvv = req.getParameter("cvv_input");
 
 
-            if (month != null && year != null && cvv != null) {
+            if (!month.equals("") && !year.equals("") && !cvv.equals("")) {
                 //check card in bank.....
                 //if bank responses status ok, then insert cart
 
@@ -82,7 +82,7 @@ public class PayProcess extends HttpServlet {
 
             payCard = null;
             for (Card card : cards ) {
-                if (card.getCardNo().equals(cardNo.substring(12))) {
+                if (card.getCardNo().equals(cardNo)) {
                     payCard = card;
                     break;
                 }
