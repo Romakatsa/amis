@@ -1,8 +1,7 @@
 #page-top {
-    height: 70px;
-    background-color: #da0000b3;
-    padding: 10px 15px;
-    border-bottom: 30px solid white;
+    background-color: #fff;
+    padding: 15px 15px 0px;
+    border-bottom: 34px solid #ff645c;
 }
 
 body {
@@ -45,6 +44,7 @@ h2 {
     clear: both;
     float: left;
     font-family: Oxygen;
+    position:relative;
 }
 
 .form-msg {
@@ -60,6 +60,10 @@ h2 {
     clear: both;
 }
 
+#repass_msg {
+    font-size:13px;
+}
+
 #content {
     background-color: white;
     min-height: 307px;
@@ -71,19 +75,41 @@ h2 {
 }
 
 #page-top label{
-  margin-left:20px;
-    color:white;
-    font-family:Oxygen;
+    margin-left: 20px;
+    color: #ff645c;
+    font-family: Oxygen;
 }
 
 #page-top a{
-    color:white;
-    margin-left:5px;
+    color: #393939;
+    margin-left: 20px;
+}
+
+#page-top a:hover {
+    cursor: pointer;
+    color:black;
 }
 
 #login , #password {
-    margin-left:8px;
+    margin-left: 8px;
+    width: 200px;
 }
+
+#page-top input[type='submit'] {
+    width: 130px;
+    margin-left: 30px;
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid #ff645c;
+    color: #ff645c;
+    font-size: 16px;
+}
+
+#page-top input[type='submit']:hover {
+    color:red;
+    border-color:red;
+}
+
 
 .invalid  {
     border-left: 2px solid red;
@@ -97,14 +123,20 @@ h2 {
     border-left:2px solid green;
 }
 
+.exists {
+    border-left:2px solid red;
+}
+
 .ok .form-msg {
     color:grey;
 }
 
-.exists input:after {
+.exists input::after {
     content: "Username already exists";
     display:inline;
     color:red;
+    position:absolute;
+
 }
 
 #reg input[type="submit"] {
@@ -119,5 +151,5 @@ h2 {
 
 #reg input[type="submit"]:hover {
     background-color:#ffc2c2;
-
+    cursor:pointer;
 }

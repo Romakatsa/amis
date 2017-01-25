@@ -8,6 +8,6 @@ import fpm.entities.Payment;
 public interface PaymentDAO {
 
     public Payment[] selectPaymentsByLogin(String login);
-    public int insertPayment(Payment payment);
+    public int insertPayment(Payment payment, String login);
 
 }

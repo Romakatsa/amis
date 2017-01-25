@@ -1,0 +1,54 @@
+.menubar_admin .menu_item {
+    width:20% !important;
+}
+
+.menu_bar {
+
+}
+
+.admin_list {
+
+}
+
+.hidden {
+
+}
+
+
+form[name='users_filters'] {
+
+}
+
+form[name='payments_filters'] {
+
+}
+
+#users_list div {
+
+}
+
+#users_list label {
+
+}
+
+#users_list input {
+
+}
+
+#payments_list input {
+
+}
+
+#payments_list div {
+
+}
+
+#payments_list label {
+
+}
+
+
+
+input[type='submit'] {
+
+}

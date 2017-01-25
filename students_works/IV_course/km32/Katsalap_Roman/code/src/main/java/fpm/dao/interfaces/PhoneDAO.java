@@ -7,8 +7,8 @@ import fpm.entities.Phone;
  */
 public interface PhoneDAO {
 
-    public int insertPhone(Phone phone, String login);
-
+    public boolean insertPhone(Phone phone, String login);
+    public boolean isExistPhone(Phone phone, String login);
     public boolean deleteCard(Phone phone);
     public Phone selectBy();
     public Phone[] selectPhonesByLogin(String login);

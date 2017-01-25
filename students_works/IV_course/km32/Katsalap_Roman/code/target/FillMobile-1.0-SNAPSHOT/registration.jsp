@@ -9,7 +9,10 @@
 <div id="reg">
     <h2>Registration Form</h2>
     <br>
-    <form action="/reg" method="post">
+    <div id="reg-msg">
+
+    </div>
+    <form action="/reg" method="post" name="reg_form">
 
         <div class="form-group ${requestScope.isValidLogin}">
             <label for="inputLogin">Enter login</label>
@@ -35,7 +38,7 @@
         <div class="form-group">
             <label for="inputRePass">Repeat password:</label>
             <input type="password" class="form-control" pattern="^[A-Za-z0-9]+$" id="inputRePass" name="re_password"  maxlength="25"  required>
-            <span id="repass_msg"></span>
+            <span id="repass_msg" class="form-msg">Passwords do not match</span>
         </div>
         <br />
         <div class="text-right">

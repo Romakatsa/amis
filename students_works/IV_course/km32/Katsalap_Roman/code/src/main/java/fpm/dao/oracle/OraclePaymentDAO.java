@@ -6,10 +6,7 @@ import fpm.entities.Card;
 import fpm.entities.Payment;
 import fpm.entities.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.time.OffsetDateTime;
@@ -41,7 +38,7 @@ public class OraclePaymentDAO implements
                 return null;
                 }
                 while(rs.next()) {
-                    paymentsList.add(new Payment(OffsetDateTime.ofInstant(rs.getTimestamp(2).toInstant(), ZoneId.of("Europe/Paris")),rs.getFloat(3),rs.getString(4),new Card(rs.getString(6),rs.getString(8)), rs.getInt(1)));
+                    paymentsList.add(new Payment(rs.getTimestamp(2),rs.getFloat(3),rs.getString(4),new Card(rs.getString(5),rs.getString(7)), rs.getInt(1)));
                 }
 
 
@@ -54,17 +51,18 @@ public class OraclePaymentDAO implements
     }
 
     @Override
-    public int insertPayment(Payment payment) {
+    public int insertPayment(Payment payment,String login) {
 
         this.con = OracleDAOFactory.open();
         PreparedStatement ins = null;
         int id = -1;
         try {
-            ins = con.prepareStatement("insert into payment (paydate,amount,phone_number,CardNo) values (?,?,?,?)");
-            ins.setTimestamp(1,payment.getSqlDate());
-            ins.setFloat(2,payment.getAmount());
-            ins.setString(3,payment.getPhone());
-            ins.setString(4,payment.getCard().getCardNo());
+            ins = con.prepareStatement("insert into payments (amount,phone_number,Card_No,login) values (?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+
+            ins.setFloat(1,payment.getAmount());
+            ins.setString(2,payment.getPhone());
+            ins.setString(3,payment.getCard().getCardNo());
+            ins.setString(4,login);
             id = ins.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,11 +70,6 @@ public class OraclePaymentDAO implements
         OracleDAOFactory.close(con);
         return id;
 
-
     }
-
-
-
-
 
 }

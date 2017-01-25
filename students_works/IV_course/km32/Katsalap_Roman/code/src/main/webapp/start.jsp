@@ -13,12 +13,16 @@
     <div id="page-top">
 
         <c:if test="${logged eq 'false'}">
-            <c:set var="showErrorMsg" value="${showErrorMsg}" scope="request" />
+
             <jsp:include page="login.jsp"/>
         </c:if>
     </div>
     <div id="content">
-
+        <c:if test="${not empty message}">
+            <div id="login_error_message">
+                <span>${message}</span>
+            </div>
+        </c:if>
         <c:if test="${logged eq 'false'}">
             <c:set var="isValidLogin" value="${isValidLogin}" scope="request" />
             <c:set var="isValidPass" value="${isValidPass}" scope="request" />

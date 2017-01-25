@@ -7,7 +7,7 @@ import fpm.entities.User;
  */
 public interface UserDAO {
 
-    public int insertUserWithPassword(User user,String pass,String salt);
+    public int insertUserWithPassword(User user,String pass,String salt,String confirmLink);
     public boolean deleteUser(User user);
     public boolean updateUser(User user);
     public User getUserByLogin(String login);

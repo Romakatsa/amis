@@ -22,12 +22,12 @@ public class OraclePhoneDAO implements
     private Connection con;
 
     @Override
-    public int insertPhone(Phone phone, String login) {
+    public boolean insertPhone(Phone phone, String login) {
         this.con = OracleDAOFactory.open();
         PreparedStatement ins = null;
         int id = -1;
         try {
-            ins = con.prepareStatement("insert into User_Phones (login,phone_number,phone_name) values (?,?,?)");
+            ins = con.prepareStatement("insert into Users_Phones (login,phone_number,phone_name) values (?,?,?)");
             ins.setString(1,login);
 
             ins.setString(2,phone.getPhoneNumber());
@@ -37,7 +37,12 @@ public class OraclePhoneDAO implements
             e.printStackTrace();
         }
         OracleDAOFactory.close(con);
-        return id;
+        if (id == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     @Override
@@ -58,7 +63,7 @@ public class OraclePhoneDAO implements
 
         try {
 
-            PreparedStatement select = con.prepareStatement("Select phone_number,phone_name from User_Phones where login = ?");
+            PreparedStatement select = con.prepareStatement("Select phone_number,phone_name from Users_Phones where login = ?");
             select.setString(1, login);
             ResultSet rs = select.executeQuery();
             if (!rs.isBeforeFirst()) {
@@ -77,4 +82,31 @@ public class OraclePhoneDAO implements
 
 
     }
+
+    public boolean isExistPhone(Phone phone, String login) {
+
+        this.con = OracleDAOFactory.open();
+        PreparedStatement sel = null;
+        boolean result = false;
+        try {
+            sel = con.prepareStatement("select login from users_phones where login = ? and phone_number = ?");
+
+            sel.setString(1,login);
+            sel.setString(2,phone.getPhoneNumber());
+
+            ResultSet rs = sel.executeQuery();
+            if (!rs.isBeforeFirst()) {
+            }
+            else {
+                result = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        OracleDAOFactory.close(con);
+        return  result;
+
+    }
+
 }

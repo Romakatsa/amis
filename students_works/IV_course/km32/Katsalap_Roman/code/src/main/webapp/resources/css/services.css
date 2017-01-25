@@ -1,14 +1,3 @@
-tr.hidden {
-    display:none;
-}
-
-#page-top {
-    height: 70px;
-    background-color: #da0000b3;
-    padding: 10px 15px;
-    border-bottom: 30px solid white;
-}
-
 body {
     background-image: url("../images/texture.png");
 }
@@ -17,105 +6,553 @@ h2 {
     font-family: Oxygen;
 }
 
-#wrapper {
+form {
+    float:left;
+}
 
+#menubar {
+    width: 100%;
+    background-color: #ff645c;
+    float: left;
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+#wrapper {
     width: 100%;
     max-width: 1000px;
     margin: auto;
     overflow: hidden;
+}
+
+
+.menu_item {
+    width: 25%;
+    float: left;
+    text-align: center;
+    position:relative;
+    box-sizing: border-box;
+    padding: 10px 0;
 
 }
 
-.form-group {
-    float: left;
+.menu_item:not(.menu_selected):hover {
+    background-color:#f74949;
+    cursor:pointer;
+}
+
+.menu_selected::after {
+    display: block;
+    position: absolute;
+    border-top: 20px solid #ff645c;
+    width: 0px;
+    height: 0px;
+    bottom: -20px;
+    border-left: 20px solid transparent;
+    left: calc( 50% - 20px);
+    border-right: 20px solid transparent;
+    content: "";
+}
+
+#payments_menu {
+
+}
+
+#cards_menu {
+
+}
+
+#phones_menu {
+
+}
+
+#settings_menu {
+
+}
+
+#top {
     width: 100%;
-    padding: 5px 25px;
-    border-left: 2px solid #ffea00;
-}
-
-.form-group label {
-    font-size: 17px;
-    float: left;
-    font-family: Oxygen;
-    font-weight:300;
-}
-
-.form-control {
-    width: 280px;
-    font-size: 16px;
-    border-radius: 3px;
-    border: 1px solid grey;
-    padding: 5px 10px;
-    clear: both;
-    float: left;
-    font-family: Oxygen;
-}
-
-.form-msg {
-    font-size: 12px;
-    color: grey;
-    float: left;
-    clear: both;
-}
-
-#content {
     background-color: white;
-    min-height: 307px;
-    float: left;
-    width: 100%;
-    margin-top: 15px;
-    padding: 5px 25px;
+    padding: 5px 5px;
+    text-align: right;
     box-sizing: border-box;
 }
 
-#page-top label{
-    margin-left:20px;
-    color:white;
-    font-family:Oxygen;
+#logged_as {
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-#page-top a{
-    color:white;
+#logout {
+    width: 90px;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#content {
+    width: 100%;
+    float: left;
+    background-color: white;
+    margin-top: 7px;
+    box-sizing: border-box;
+    padding: 25px 25px;
+}
+
+#new_payment {
+    width: 90%;
+    padding: 10px 2%;
+    border-radius: 10px;
+    border: 1px solid grey;
+    float:left;
+
+}
+
+#or_label {
+    /* font-weight: bold; */
+    margin: 0;
+    clear: both;
+    /* float: left; */
+    padding: 20px 0;
+    position: relative;
+    color: grey;
+    margin-left: 35px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#or_label::before {
+    display: block;
+    /* float: left; */
+    content: "";
+    height: 25px;
+    width: 1px;
+    border-left: 1px solid grey;
+    /* clear: both; */
+    position: absolute;
+    top: -5px;
+    left: 6px;
+}
+
+#or_label::after {
+    display: block;
+    /* float: left; */
+    content: "";
+    height: 27px;
+    width: 1px;
+    border-left: 1px solid grey;
+    /* clear: both; */
+    position: absolute;
+    bottom: -10px;
+    left: 6px;
+}
+
+#new_payment {
+    font-family: Oxygen;
+}
+
+#new_payment label {
+    width: 160px;
+    display: block;
+    float: left;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.form-input label {
+
+}
+
+.form-input input {
+    width: 250px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    padding: 2px 5px;
+
+    position: relative;
+}
+
+.form-input {
+    margin-top: 5px;
+    position:relative;
+}
+
+.form-input:not(#cards) {
+    padding-left:10px;
+}
+
+
+
+
+#bank-card-select {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#bank-card-select p {
+    margin: 15px 0 5px 0;
+    font-size: 16px;
+    width: 100%;
+    border-top: 1px solid rgba(128, 128, 128, 0.43);
+    padding-top: 15px;
+}
+
+
+#bank-card-select select {
+    width: 250px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    padding: 2px 5px;
+
+    position: relative;
+}
+
+
+#expire{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+
+#cvv_input {
+    width:50px;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    padding: 2px 5px;
+    position: relative;
+}
+
+input[type='submit'] {
+
+    margin-top: 50px;
+    background-color: white;
+    width: 250px;
+    font-size: 16px;
+    border: 1px solid grey;
+    padding: 5px 5px;
+
+    position: relative;
+    color: #ff645c;
+    border: none;
+    border-bottom: 1px solid #ff645c;
+    font-size: 18px;
+    clear: both;
+    float: left;
+}
+
+input[type='submit']:hover {
+    cursor:pointer;
+    color:red;
+    border-bottom:1px solid red;
+}
+
+
+h3 {
+    width: 100px;
+    float: left;
+    clear: both;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#filter {
+    font-family: Oxygen;
+    clear:both;
+    float:left;
+    width:100%;
+}
+
+
+
+#amount-filter-div {
+    width:33%;
+    float:left;
+    min-width:313px;
+}
+
+input[name='min-filter'] {
+    margin-right: 23px;
+}
+
+#phone-filter-div, #card-filter-div {
+    width: 30%;
+    margin-right: 3%;
+    float: left;
+    min-width: 285px;
+}
+
+#date-filter-div {
+    width:50%;
+    min-width:390px;
+    float:left;
+}
+
+input[name='from-date'] {
+    margin-right:10px;
+}
+
+select[name='phone-filter'], select[name='card-filter'] {
+    width: 160px;
     margin-left:5px;
 }
 
-#login , #password {
-    margin-left:8px;
+
+
+.amount-filter {
+    width: 50px;
 }
 
-.invalid  {
-    border-left: 2px solid red;
+#card_requisites {
+    float: left;
+    /* clear: both; */
+    border-top: 1px solid grey;
+    border-radius: 10px;
+    padding: 5px 10px 0;
+    margin-top: 13px;
+
 }
 
-.invalid .form-msg {
-    color:red;
+
+#result-set{
+    width:100%;
+    float:left;
+    clear:both;
+    margin-top: 40px;
 }
 
-.ok {
-    border-left:2px solid green;
+#result-set table {
+    width: 100%;
+    text-align: center;
 }
 
-.ok .form-msg {
-    color:grey;
-}
 
-.exists input:after {
-    content: "Username already exists";
-    display:inline;
-    color:red;
-}
-
-#reg input[type="submit"] {
-    width: 190px;
-    margin-left: 27px;
-    height: 40px;
+#reset-filters {
+    border: 1px solid white;
+    border-bottom: 1px solid #ff645c;
     background-color: white;
-    border: 1px solid grey;
-    border-radius: 4px;
+    color: #ff645c;
+    font-size: 12px;
+}
+
+#reset-filters:hover {
+    cursor:pointer;
+    color:red;
+    border-bottom: 1px solid red;
+}
+
+.filter-div {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#apply-filter-div {
+    float: left;
+}
+
+#apply-filter-button {
+    background-color: white;
+    border: 1px solid white;
+    border-bottom: 1px solid #ff645c;
+    color: #ff645c;
+}
+
+#apply-filter-button:hover {
+    cursor:pointer;
+    color:red;
+    border-bottom: 1px solid red;
+}
+
+
+/*
+PHONE SELECT LIST
+*/
+
+#phones {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: -258px;
+    border: 1px solid #ff645c;
+    border-radius: 5px;
+    width: 290px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    z-index: 10;
+    padding: 2px 0px;
+    min-height: 30px;
+    max-height: 155px;
+    font-size: 14px;
+}
+
+#phones_drop_list.open #phones {
+    display:block;
+}
+
+
+#phones .phone_span_container {
+    padding:2px 7px;
+    width:99%;
+    /*z-index:20;*/
+}
+
+#phones .phone_span_container:hover {
+    background-color: #ff7677;
+    cursor:pointer;
+}
+
+
+#logout {
+    cursor:pointer;
+}
+
+#phone-reset , #card-reset {
+    margin-left:10px;
+    font-size:13px;
+    color:#ff645c;
+}
+
+#phone-reset:hover , #card-reset:hover {
+    color:red;
+    cursor:pointer;
+}
+
+.disable {
+
+}
+
+#payments_history {
+    float: left;
     margin-top: 20px;
 }
 
-#reg input[type="submit"]:hover {
-    background-color:#ffc2c2;
+#uah_span {
+    display:inline;
+    font-size: 13px;
+    color:grey;
+    padding-left: 10px;
+}
 
+#payment_response {
+    float: left;
+    width: 100%;
+}
+
+#payment_response.success {
+    color:green;
+}
+
+#payment_response.failed {
+    color:red;
+}
+
+tr.hidden {
+    display:none;
+}
+
+
+/* SETTINGS */
+
+#settings_form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#change_password_div, #link_email {
+    width: 60%;
+    margin: 0 20%;
+}
+
+#link_email {
+
+}
+
+div.settings_field {
+    margin: 3px 0;
+    float:left;
+    width: 100%;
+}
+
+.settings_field label{
+    width: 160px;
+    display: block;
+    float: left;
+}
+
+.settings_field input{
+    width: 200px;
+    float:left;
+}
+
+#change_password_div input[type='text'] {
+    /*width:200px;*/
+}
+
+.shrink {
+    width:0px !important;
+    border:none;
+    padding: 0;
+}
+
+
+#change_password_div .settings_field span{
+    margin-left: 4px;
+    background-image: url("../images/eye.png");
+    background-size: 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-top: 3px;
+}
+
+
+#change_password, #change_email {
+    background-color: white;
+    color: #ff645c;
+    font-size: 17px;
+    border: none;
+    border-bottom: 1px solid #ff645c;
+    width: 205px;
+    padding-bottom: 5px;
+    margin: 5px 28%;
+    height: 30px;
+}
+
+#change_password:hover, #change_email:hover {
+    cursor: pointer;
+    color:red;
+    border-color:red;
+    padding-bottom: 3px;
+}
+
+#change_password_msg {
+    width: 100%;
+    height: 40px;
+}
+
+.success {
+    color: green;
+    font-size: 16px;
+}
+
+.failed {
+    color: red;
+    font-size: 16px;
+}
+
+#change_email_msg {
+    width: 100%;
+    height: 40px;
+}
+
+#current_email_label {
+    float: left;
+    width: 160px;
 }

@@ -1,5 +1,6 @@
 package fpm.servlets;
 
+import com.google.gson.Gson;
 import fpm.crypt.Crypt;
 import fpm.dao.interfaces.CardDAO;
 import fpm.dao.interfaces.PaymentDAO;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import java.time.OffsetDateTime;
@@ -43,34 +45,51 @@ public class PayProcess extends HttpServlet {
         OracleDAOFactory oracleDaoFactory = new OracleDAOFactory();
         CardDAO cardDao = oracleDaoFactory.getCardDAO();
 
-        if (cardNo.equals("")) {
-            cardNo = req.getParameter("card_input");
+        Gson gson = new Gson();
+        ResponseData responseData = new ResponseData();
+        responseData.message = "";
+        responseData.success = true;
+        PrintWriter out = resp.getWriter();
+
+
             String month = req.getParameter("month_select");
             String year = req.getParameter("year_select");
             String cvv = req.getParameter("cvv_input");
 
-            //check card in bank.....
-            //if bank responses status ok, then insert cart
 
-            token = "tokenString";
-            payCard = new Card(cardNo,"",token);
-            cardDao.insertCard(payCard,login);
-        }
-        else {
+            if (month != null && year != null && cvv != null) {
+                //check card in bank.....
+                //if bank responses status ok, then insert cart
 
-
-
+                token = "tokenString";
+                payCard = new Card(cardNo.substring(12),"",token);
+                String cardOwner = cardDao.isExistCard(payCard);
+                if (cardOwner == null) {
+                    if (!cardDao.insertCard(payCard,login)) {
+                        responseData.message = "<span class='pay_err_msg'>Card can't be processed</span>";
+                        responseData.success = false;
+                    }
+                }
+                else {
+                    if (!cardOwner.equals(login)) {
+                        responseData.message = "<span class='pay_err_msg'>This card is already in use.</span>";
+                        responseData.success = false;
+                    }
+                }
+            }
+            else {
             Card[] cards = cardDao.selectCardsByLogin(req.getSession(false).getAttribute("loggedInUser").toString());
 
             payCard = null;
             for (Card card : cards ) {
-                if (card.getCardNo().equals(cardNo)) {
+                if (card.getCardNo().equals(cardNo.substring(12))) {
                     payCard = card;
                     break;
                 }
             }
             if (payCard == null) {
-                //No such card
+                responseData.message = "<span class='pay_err_msg'>Card can't be processed</span>";
+                responseData.success = false;
             }
 
             token = payCard.getToken();  // token from bank response
@@ -85,28 +104,41 @@ public class PayProcess extends HttpServlet {
         //if OK
         boolean success = true;
 
-        if (success) {
-
+        if (responseData.success) {
 
             PaymentDAO paymentDao = oracleDaoFactory.getPaymentDAO();
             PhoneDAO phoneDao = oracleDaoFactory.getPhoneDAO();
             Phone userPhone = new Phone(phone,"");
+            if (!phoneDao.isExistPhone(userPhone,login)) {
+                if(!phoneDao.insertPhone(userPhone, login)) {
+                    responseData.message = "<span class='pay_err_msg'>Unknown error!</span>";
+                    responseData.success = false;
+                }
+            }
+            Payment payment = new Payment(Float.parseFloat(amountString),phone,payCard);
+            int id = paymentDao.insertPayment(payment, login);
 
 
-
-            OffsetDateTime now = OffsetDateTime.now();
-            phoneDao.insertPhone(userPhone, login);
-            Payment payment = new Payment(now,Float.parseFloat(amountString),phone,payCard);
-            paymentDao.insertPayment(payment);
+            if (id>0) {
+                responseData.message += "<span class='pay_err_msg'>Payment processed! Payment id:" + id + "</span>";
+                responseData.success = true;
+                String json_answer = gson.toJson(responseData);
+                out.write(json_answer);
+            }
+            else {
+                responseData.message += "Payment cannot be processed!";
+                responseData.success = false;
+                String json_answer = gson.toJson(responseData);
+                out.write(json_answer);
+            }
 
         }
-
-
-
-
-
-
+        else {
+            String json_answer = gson.toJson(responseData);
+            out.write(json_answer);
+        }
+    return;
     }
 
-
 }
+

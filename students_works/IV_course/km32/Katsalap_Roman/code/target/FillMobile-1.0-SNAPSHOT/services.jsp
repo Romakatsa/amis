@@ -9,20 +9,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
     <title>User page</title>
+    <link rel="stylesheet" href="resources/css/services.css" type="text/css">
     <script src="resources/js/jquery.js"></script>
     <script src="resources/js/services.js"></script>
+    <script src="resources/js/services-forms.js"></script>
     <script src="resources/js/forms.js"></script>
+    <c:if test="${role == 'admin'}">
+        <script src="resources/js/admin.js"></script>
+        <link rel="stylesheet" href="resources/css/admin.css" type="text/css">
+    </c:if>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400" rel="stylesheet">
 </head>
 <body>
+<div id="wrapper">
     <div id="top">
         <span id="logged_as">Logged as ${login}</span><button id="logout">Log out</button>
     </div>
-    <div id="menubar">
-        <div class="menu_item" id="payments_menu" action="payments">Payments</div>
+    <div id="menubar" class="menubar_${role}">
+        <div class="menu_item menu_selected" id="payments_menu" action="payments">Payments</div>
         <div class="menu_item" id="cards_menu" action="cards">Cards</div>
         <div class="menu_item" id="phones_menu" action="phones">Phones</div>
         <div class="menu_item" id="settings_menu" action="settings">Settings</div>
+        <c:if test="${role == 'admin'}">
+            <div class="menu_item" id="admin_menu" action="admin">Admin</div>
+        </c:if>
     </div>
     <div id="content">
         <c:choose>
@@ -39,10 +53,13 @@
                 <jsp:include page="settings.jsp"></jsp:include>
 
             </c:when>
-
+            <c:when test="${menu_item == 'admin'}">
+                <jsp:include page="admin.jsp"></jsp:include>
+            </c:when>
 
         </c:choose>
 
     </div>
+</div>
 </body>
 </html>
