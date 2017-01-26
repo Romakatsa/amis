@@ -57,6 +57,9 @@ public class PayProcess extends HttpServlet {
             String cvv = req.getParameter("cvv_input");
 
 
+
+
+
             if (!month.equals("") && !year.equals("") && !cvv.equals("")) {
                 //check card in bank.....
                 //if bank responses status ok, then insert cart
@@ -120,7 +123,7 @@ public class PayProcess extends HttpServlet {
 
 
             if (id>0) {
-                responseData.message += "<span class='pay_err_msg'>Payment processed! Payment id:" + id + "</span>";
+                responseData.message += "<span class='pay_err_msg'>Payment processed!</span>";
                 responseData.success = true;
                 String json_answer = gson.toJson(responseData);
                 out.write(json_answer);

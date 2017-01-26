@@ -57,7 +57,7 @@ public class OraclePaymentDAO implements
         PreparedStatement ins = null;
         int id = -1;
         try {
-            ins = con.prepareStatement("insert into payments (amount,phone_number,Card_No,login) values (?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+            ins = con.prepareStatement("insert into payments (amount,phone_number,Card_No,login) values (?,?,?,?)",new String[]{"PAYMENT_ID"});
 
             ins.setFloat(1,payment.getAmount());
             ins.setString(2,payment.getPhone());

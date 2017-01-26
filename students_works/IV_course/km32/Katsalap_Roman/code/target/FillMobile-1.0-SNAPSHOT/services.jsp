@@ -14,10 +14,12 @@
     <meta http-equiv="Expires" content="-1">
     <title>User page</title>
     <link rel="stylesheet" href="resources/css/services.css" type="text/css">
+    <script>var contextPath = "${pageContext.request.contextPath}";</script>
     <script src="resources/js/jquery.js"></script>
     <script src="resources/js/services.js"></script>
     <script src="resources/js/services-forms.js"></script>
     <script src="resources/js/forms.js"></script>
+
     <c:if test="${role == 'admin'}">
         <script src="resources/js/admin.js"></script>
         <link rel="stylesheet" href="resources/css/admin.css" type="text/css">
@@ -54,6 +56,11 @@
 
             </c:when>
             <c:when test="${menu_item == 'admin'}">
+                <c:set var="unconfirmed" value="${unconfirmed}" scope = "request" />
+                <c:set var="confirmed" value="${confirmed}" scope = "request" />
+                <c:set var="banned" value="${banned}" scope = "request" />
+                <c:set var="reseted" value="${reseted}" scope = "request" />
+                <c:set var="active" value="${active}" scope = "request" />
                 <jsp:include page="admin.jsp"></jsp:include>
             </c:when>
 

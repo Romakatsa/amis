@@ -31,9 +31,16 @@
         </c:if>
         <!--include register form-->
 
-
-
     </div>
+</div>
+
+<div id="footer">
+    <img src="${pageContext.request.contextPath}/resources/images/Card.png" id="1">
+    <img src="${pageContext.request.contextPath}/resources/images/arrow.png" id="2">
+    <img src="${pageContext.request.contextPath}/resources/images/code.jpg" id="3">
+    <img src="${pageContext.request.contextPath}/resources/images/arrow_down.png" id="4">
+    <img src="${pageContext.request.contextPath}/resources/images/jewish_run.jpg" id="5">
+
 </div>
 </body>
 </html>

@@ -71,6 +71,7 @@ public class OracleCardDAO implements
         return result;
     }
 
+
     @Override
     public boolean insertCard(Card card, String login) {
 

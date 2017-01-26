@@ -3,32 +3,52 @@
 }
 
 .menu_bar {
+    background-color: #f2f2f2;
+    padding: 4px 22px;
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+    box-sizing: border-box;
+    cursor:pointer;
+}
 
+.menu_bar h2{
+    margin:0;
+}
+
+.menu_bar:hover {
+    background-color: #e4e4e4;
 }
 
 .admin_list {
-
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
 }
 
 .hidden {
-
+    display:none;
 }
 
 
 form[name='users_filters'] {
-
+    width: 100%;
 }
 
 form[name='payments_filters'] {
-
+    width:100%;
 }
 
 #users_list div {
-
+    float: left;
+    width: 100%;
+    margin: 2px 0;
 }
 
 #users_list label {
-
+    width: 140px;
+    float: left;
 }
 
 #users_list input {
@@ -36,15 +56,19 @@ form[name='payments_filters'] {
 }
 
 #payments_list input {
-
+    float: left;
+    width: 160px;
 }
 
 #payments_list div {
-
+    float: left;
+    width: 100%;
+    margin: 2px 0;
 }
 
 #payments_list label {
-
+    width: 180px;
+    float: left;
 }
 
 
@@ -52,3 +76,46 @@ form[name='payments_filters'] {
 input[type='submit'] {
 
 }
+
+#admin_amount_filter div {
+    width:50%;
+    float:left;
+}
+
+#admin_date_filter div {
+    width:50%;
+    float:left;
+}
+
+#users-filter-result {
+    width: 100%;
+    text-align: center;
+    cursor:pointer;
+    border-collapse: collapse;
+}
+
+
+
+#users-filter-result tr:not(:first-child):hover {
+
+    background-color: #fff29e;
+
+}
+
+#users-filter-result  td {
+    padding:7px 0;
+}
+
+#user_window {
+    position:fixed;
+    width:600px;
+    height:400px;
+    margin:auto;
+    background-color:white;
+    border:1px solid grey;
+    border-radius:5px;
+    top: 100px;
+    left: 25%;
+}
+
+

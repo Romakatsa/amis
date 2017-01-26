@@ -227,7 +227,7 @@ form {
     position: relative;
 }
 
-input[type='submit'] {
+#new_payment input[type='submit'] {
 
     margin-top: 50px;
     background-color: white;

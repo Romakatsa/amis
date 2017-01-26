@@ -98,7 +98,9 @@ $(function() {
         $("#content").load("/services", {action: action}, function() {
             $(".menu_item").removeClass('menu_selected');
             that.addClass('menu_selected');
+            return false;
         });
+        return false;
         //enable menu
     });
 

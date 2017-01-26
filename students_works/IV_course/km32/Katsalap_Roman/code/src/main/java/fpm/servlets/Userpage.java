@@ -17,9 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/services")
-
 public class Userpage extends HttpServlet{
 
 
@@ -40,48 +43,57 @@ public class Userpage extends HttpServlet{
             actionParam = "payments";
         }
 
-        if (actionParam.equals("admin")) {
-            if(!role.equals("admin")) {
 
-                resp.sendRedirect("/services?action=payments");
-                return;
+            if (actionParam.equals("admin")) {
+                if (!role.equals("admin")) {
+
+                    resp.sendRedirect("/services?action=payments");
+                    return;
+                }
+
+                OracleDAOFactory oracleDAOFactory = new OracleDAOFactory();
+                UserDAO userDao = oracleDAOFactory.getUserDAO();
+
+                int[] usersCount = userDao.getUsersCount();
+                req.setAttribute("unconfirmed",usersCount[0]);
+                req.setAttribute("confirmed",usersCount[1]);
+                req.setAttribute("reseted",usersCount[2]);
+                req.setAttribute("banned",usersCount[3]);
+                req.setAttribute("active",usersCount[4]);
+
+                //req.getRequestDispatcher("admin.jsp").forward(req,resp);
+
+
+
+            } else if (actionParam.equals("payments")) {
+
+                PaymentDAO paymentDao = oracleDaoFactory.getPaymentDAO();
+                PhoneDAO phoneDao = oracleDaoFactory.getPhoneDAO();
+                Payment[] userPayments = paymentDao.selectPaymentsByLogin(login);
+                Phone[] userPhones = phoneDao.selectPhonesByLogin(login);
+
+                req.setAttribute("phones", userPhones);
+                req.setAttribute("payments", userPayments);
+                req.setAttribute("cards", userCards);
+            } else if (actionParam.equals("cards")) {
+
+
+            } else if (actionParam.equals("settings")) {
+
+
             }
-        }
-
-        else if (actionParam.equals("payments")) {
-
-            PaymentDAO paymentDao = oracleDaoFactory.getPaymentDAO();
-            PhoneDAO phoneDao = oracleDaoFactory.getPhoneDAO();
-            Payment[] userPayments = paymentDao.selectPaymentsByLogin(login);
-            Phone[] userPhones = phoneDao.selectPhonesByLogin(login);
-
-            req.setAttribute("phones",userPhones);
-            req.setAttribute("payments",userPayments);
-            req.setAttribute("cards",userCards);
-        }
-
-        else if (actionParam.equals("cards")) {
 
 
-
-        }
-
-
-        else if (actionParam.equals("settings")) {
-
-
-        }
-
-
-        req.setAttribute("cards",userCards);
-        req.setAttribute("menu_item",actionParam);
-        req.setAttribute("role",role);
-        req.getRequestDispatcher("services.jsp").forward(req,resp);
+            req.setAttribute("cards", userCards);
+            req.setAttribute("menu_item", actionParam);
+            req.setAttribute("role", role);
+            req.getRequestDispatcher("services.jsp").forward(req, resp);
 
 
 
 
 
+    return;
 
 
     }
@@ -97,6 +109,17 @@ public class Userpage extends HttpServlet{
 
         if (actionParam.equals("admin")) {
             if (role.equals("admin")) {
+
+                OracleDAOFactory oracleDAOFactory = new OracleDAOFactory();
+                UserDAO userDao = oracleDAOFactory.getUserDAO();
+
+                int[] usersCount = userDao.getUsersCount();
+                req.setAttribute("unconfirmed",usersCount[0]);
+                req.setAttribute("confirmed",usersCount[1]);
+                req.setAttribute("reseted",usersCount[2]);
+                req.setAttribute("banned",usersCount[3]);
+                req.setAttribute("active",usersCount[4]);
+
                 req.getRequestDispatcher("admin.jsp").forward(req,resp);
                 return;
             }
@@ -135,7 +158,8 @@ public class Userpage extends HttpServlet{
         }
 
 
-
+        return;
        //req.getRequestDispatcher("services.jsp").forward(req,resp);
     }
+
 }

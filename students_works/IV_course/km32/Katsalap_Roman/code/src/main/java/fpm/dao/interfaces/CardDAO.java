@@ -13,4 +13,5 @@ public interface CardDAO {
     public Card selectBy();
     public Card[] selectCardsByLogin(String login);
     public String isExistCard(Card card);
+
 }

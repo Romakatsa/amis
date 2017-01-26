@@ -19,7 +19,44 @@ h2 {
     margin: auto;
     overflow: hidden;
 
+
 }
+
+#footer {
+
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    background-color: white;
+    overflow: hidden;
+    margin-top: 150px;
+
+}
+
+#1 {
+    width: 251px;
+    float: left;
+}
+
+#2 {
+    width: 192px;
+    float: left;
+}
+
+#3 {
+    float: left;
+    margin-top: 21px;
+}
+
+#4 {
+    height: 170px;
+}
+
+#5 {
+    float: right;
+    margin: 0 240px 0 0;
+}
+
 
 .form-group {
     float: left;

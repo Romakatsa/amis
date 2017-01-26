@@ -94,9 +94,9 @@
     </schema>
     <schema id="32" parent="1" name="ROMA">
       <ObjectId>85</ObjectId>
-      <IntrospectionTimestamp>2017-01-25.12:05:03</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2017-01-26.06:00:03</IntrospectionTimestamp>
       <CreatedTimestamp>2017-01-21.10:37:33</CreatedTimestamp>
-      <ModifiedTimestamp>2017-01-25.12:04:52</ModifiedTimestamp>
+      <ModifiedTimestamp>2017-01-26.05:59:55</ModifiedTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -127,7 +127,7 @@
     <table id="38" parent="32" name="USERS">
       <ObjectId>73608</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
-      <ModifiedTimestamp>2017-01-25.02:15:02</ModifiedTimestamp>
+      <ModifiedTimestamp>2017-01-26.05:59:55</ModifiedTimestamp>
     </table>
     <table id="39" parent="32" name="USERS_ACCOUNT_STATUSES">
       <ObjectId>73610</ObjectId>
@@ -145,16 +145,22 @@
       <ModifiedTimestamp>2017-01-25.02:17:53</ModifiedTimestamp>
       <Modifiable>1</Modifiable>
     </view>
-    <column id="42" parent="35" name="STATUS_NAME">
+    <view id="42" parent="32" name="LAST_STATUSES">
+      <ObjectId>73709</ObjectId>
+      <CreatedTimestamp>2017-01-26.00:22:46</CreatedTimestamp>
+      <ModifiedTimestamp>2017-01-26.00:22:46</ModifiedTimestamp>
+      <Modifiable>1</Modifiable>
+    </view>
+    <column id="43" parent="35" name="STATUS_NAME">
       <Position>1</Position>
       <DataType>VARCHAR2(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="43" parent="35" name="STATUS_DESCRIPTION">
+    <column id="44" parent="35" name="STATUS_DESCRIPTION">
       <Position>2</Position>
       <DataType>CLOB|0</DataType>
     </column>
-    <index id="44" parent="35" name="PK_ACCOUNT_STATUSES">
+    <index id="45" parent="35" name="PK_ACCOUNT_STATUSES">
       <ObjectId>73600</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:52</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
@@ -162,33 +168,33 @@
       <ColNames>STATUS_NAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="45" parent="35" name="PK_ACCOUNT_STATUSES">
+    <key id="46" parent="35" name="PK_ACCOUNT_STATUSES">
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
       <ColNames>STATUS_NAME</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_ACCOUNT_STATUSES</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="36" name="LOGIN">
+    <column id="47" parent="36" name="LOGIN">
       <Position>1</Position>
       <DataType>VARCHAR2(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="36" name="CARD_NO">
+    <column id="48" parent="36" name="CARD_NO">
       <Position>2</Position>
       <DataType>VARCHAR2(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="48" parent="36" name="TOKEN">
+    <column id="49" parent="36" name="TOKEN">
       <Position>3</Position>
       <DataType>VARCHAR2(25)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="36" name="CARD_NAME">
+    <column id="50" parent="36" name="CARD_NAME">
       <Position>4</Position>
       <DataType>VARCHAR2(30)|0</DataType>
     </column>
-    <index id="50" parent="36" name="PK_CARDS">
+    <index id="51" parent="36" name="PK_CARDS">
       <ObjectId>73602</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:52</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
@@ -197,14 +203,14 @@
 CARD_NO</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="51" parent="36" name="USER_CARD_FK">
+    <index id="52" parent="36" name="USER_CARD_FK">
       <ObjectId>73603</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:52</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>LOGIN</ColNames>
     </index>
-    <key id="52" parent="36" name="PK_CARDS">
+    <key id="53" parent="36" name="PK_CARDS">
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
       <ColNames>LOGIN
 CARD_NO</ColNames>
@@ -212,44 +218,44 @@ CARD_NO</ColNames>
       <UnderlyingIndexName>PK_CARDS</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="53" parent="36" name="FK_CARDS_USER_CARD_USERS">
+    <foreign-key id="54" parent="36" name="FK_CARDS_USER_CARD_USERS">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefTableName>USERS</RefTableName>
       <RefKeyName>PK_USERS</RefKeyName>
     </foreign-key>
-    <column id="54" parent="37" name="PAYMENT_ID">
+    <column id="55" parent="37" name="PAYMENT_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="37" name="LOGIN">
+    <column id="56" parent="37" name="LOGIN">
       <Position>2</Position>
       <DataType>VARCHAR2(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="56" parent="37" name="PHONE_NUMBER">
+    <column id="57" parent="37" name="PHONE_NUMBER">
       <Position>3</Position>
       <DataType>VARCHAR2(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="37" name="CARD_NO">
+    <column id="58" parent="37" name="CARD_NO">
       <Position>4</Position>
       <DataType>VARCHAR2(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="37" name="PAYDATE">
+    <column id="59" parent="37" name="PAYDATE">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0</DataType>
       <DefaultExpression>current_timestamp</DefaultExpression>
     </column>
-    <column id="59" parent="37" name="AMOUNT">
+    <column id="60" parent="37" name="AMOUNT">
       <Position>6</Position>
       <DataType>NUMBER(7,2)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="60" parent="37" name="PK_PAYMENTS">
+    <index id="61" parent="37" name="PK_PAYMENTS">
       <ObjectId>73605</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:52</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
@@ -257,7 +263,7 @@ CARD_NO</ColNames>
       <ColNames>PAYMENT_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="61" parent="37" name="PAYMENT_PHONE_FK">
+    <index id="62" parent="37" name="PAYMENT_PHONE_FK">
       <ObjectId>73606</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:52</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
@@ -265,7 +271,7 @@ CARD_NO</ColNames>
       <ColNames>LOGIN
 PHONE_NUMBER</ColNames>
     </index>
-    <index id="62" parent="37" name="PAYMENT_CARD_FK">
+    <index id="63" parent="37" name="PAYMENT_CARD_FK">
       <ObjectId>73607</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
@@ -273,14 +279,14 @@ PHONE_NUMBER</ColNames>
       <ColNames>LOGIN
 CARD_NO</ColNames>
     </index>
-    <key id="63" parent="37" name="PK_PAYMENTS">
+    <key id="64" parent="37" name="PK_PAYMENTS">
       <ModifiedTimestamp>2017-01-24.22:03:52</ModifiedTimestamp>
       <ColNames>PAYMENT_ID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_PAYMENTS</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="64" parent="37" name="FK_PAYMENTS_PAYMENT_P_USERS_PH">
+    <foreign-key id="65" parent="37" name="FK_PAYMENTS_PAYMENT_P_USERS_PH">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN
 PHONE_NUMBER</ColNames>
@@ -288,7 +294,7 @@ PHONE_NUMBER</ColNames>
       <RefTableName>USERS_PHONES</RefTableName>
       <RefKeyName>PK_USERS_PHONES</RefKeyName>
     </foreign-key>
-    <foreign-key id="65" parent="37" name="FK_PAYMENTS_PAYMENT_C_CARDS">
+    <foreign-key id="66" parent="37" name="FK_PAYMENTS_PAYMENT_C_CARDS">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN
 CARD_NO</ColNames>
@@ -296,43 +302,44 @@ CARD_NO</ColNames>
       <RefTableName>CARDS</RefTableName>
       <RefKeyName>PK_CARDS</RefKeyName>
     </foreign-key>
-    <trigger id="66" parent="37" name="PAYMENT_TRIG">
+    <trigger id="67" parent="37" name="PAYMENT_TRIG">
       <ObjectId>73619</ObjectId>
       <CreatedTimestamp>2017-01-25.12:04:52</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-25.12:04:52</ModifiedTimestamp>
       <Events>I</Events>
       <Turn>before-row</Turn>
     </trigger>
-    <column id="67" parent="38" name="LOGIN">
+    <column id="68" parent="38" name="LOGIN">
       <Position>1</Position>
       <DataType>VARCHAR2(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="68" parent="38" name="EMAIL">
+    <column id="69" parent="38" name="EMAIL">
       <Position>2</Position>
       <DataType>VARCHAR2(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="38" name="HASH_PASS">
+    <column id="70" parent="38" name="HASH_PASS">
       <Position>3</Position>
       <DataType>VARCHAR2(60)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="70" parent="38" name="SALT">
+    <column id="71" parent="38" name="SALT">
       <Position>4</Position>
       <DataType>VARCHAR2(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="71" parent="38" name="HASH_LINK">
+    <column id="72" parent="38" name="HASH_LINK">
       <Position>5</Position>
       <DataType>VARCHAR2(60)|0</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="72" parent="38" name="IS_ADMIN">
+    <column id="73" parent="38" name="IS_ADMIN">
       <Position>6</Position>
       <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="73" parent="38" name="PK_USERS">
+    <index id="74" parent="38" name="PK_USERS">
       <ObjectId>73609</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
@@ -340,34 +347,34 @@ CARD_NO</ColNames>
       <ColNames>LOGIN</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="74" parent="38" name="PK_USERS">
+    <key id="75" parent="38" name="PK_USERS">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>PK_USERS</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="75" parent="39" name="LOGIN">
+    <column id="76" parent="39" name="LOGIN">
       <Position>1</Position>
       <DataType>VARCHAR2(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="39" name="STATUS_NAME">
+    <column id="77" parent="39" name="STATUS_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="39" name="DATE_OF_STATUS">
+    <column id="78" parent="39" name="DATE_OF_STATUS">
       <Position>3</Position>
       <DataType>TIMESTAMP(6)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>current_timestamp</DefaultExpression>
     </column>
-    <column id="78" parent="39" name="STATUS_MESSAGE">
+    <column id="79" parent="39" name="STATUS_MESSAGE">
       <Position>4</Position>
       <DataType>CLOB|0</DataType>
     </column>
-    <index id="79" parent="39" name="PK_USERS_ACCOUNT_STATUSES">
+    <index id="80" parent="39" name="PK_USERS_ACCOUNT_STATUSES">
       <ObjectId>73613</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
@@ -377,21 +384,21 @@ STATUS_NAME
 DATE_OF_STATUS</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="80" parent="39" name="ACCOUNT_STATUSES_FK">
+    <index id="81" parent="39" name="ACCOUNT_STATUSES_FK">
       <ObjectId>73615</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>LOGIN</ColNames>
     </index>
-    <index id="81" parent="39" name="ACCOUNTS_STATUSES_FK">
+    <index id="82" parent="39" name="ACCOUNTS_STATUSES_FK">
       <ObjectId>73614</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>STATUS_NAME</ColNames>
     </index>
-    <key id="82" parent="39" name="PK_USERS_ACCOUNT_STATUSES">
+    <key id="83" parent="39" name="PK_USERS_ACCOUNT_STATUSES">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN
 STATUS_NAME
@@ -400,35 +407,35 @@ DATE_OF_STATUS</ColNames>
       <UnderlyingIndexName>PK_USERS_ACCOUNT_STATUSES</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="83" parent="39" name="FK_USERS_AC_ACCOUNT_S_USERS">
+    <foreign-key id="84" parent="39" name="FK_USERS_AC_ACCOUNT_S_USERS">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefTableName>USERS</RefTableName>
       <RefKeyName>PK_USERS</RefKeyName>
     </foreign-key>
-    <foreign-key id="84" parent="39" name="FK_USERS_AC_ACCOUNTS__ACCOUNT_">
+    <foreign-key id="85" parent="39" name="FK_USERS_AC_ACCOUNTS__ACCOUNT_">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>STATUS_NAME</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefTableName>ACCOUNT_STATUSES</RefTableName>
       <RefKeyName>PK_ACCOUNT_STATUSES</RefKeyName>
     </foreign-key>
-    <column id="85" parent="40" name="LOGIN">
+    <column id="86" parent="40" name="LOGIN">
       <Position>1</Position>
       <DataType>VARCHAR2(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="86" parent="40" name="PHONE_NUMBER">
+    <column id="87" parent="40" name="PHONE_NUMBER">
       <Position>2</Position>
       <DataType>VARCHAR2(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="40" name="PHONE_NAME">
+    <column id="88" parent="40" name="PHONE_NAME">
       <Position>3</Position>
       <DataType>VARCHAR2(40)|0</DataType>
     </column>
-    <index id="88" parent="40" name="PK_USERS_PHONES">
+    <index id="89" parent="40" name="PK_USERS_PHONES">
       <ObjectId>73617</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
@@ -437,14 +444,14 @@ DATE_OF_STATUS</ColNames>
 PHONE_NUMBER</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="89" parent="40" name="USER_PHONE_FK">
+    <index id="90" parent="40" name="USER_PHONE_FK">
       <ObjectId>73618</ObjectId>
       <CreatedTimestamp>2017-01-24.22:03:53</CreatedTimestamp>
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>LOGIN</ColNames>
     </index>
-    <key id="90" parent="40" name="PK_USERS_PHONES">
+    <key id="91" parent="40" name="PK_USERS_PHONES">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN
 PHONE_NUMBER</ColNames>
@@ -452,49 +459,63 @@ PHONE_NUMBER</ColNames>
       <UnderlyingIndexName>PK_USERS_PHONES</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="91" parent="40" name="FK_USERS_PH_USER_PHON_USERS">
+    <foreign-key id="92" parent="40" name="FK_USERS_PH_USER_PHON_USERS">
       <ModifiedTimestamp>2017-01-24.22:03:53</ModifiedTimestamp>
       <ColNames>LOGIN</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <RefTableName>USERS</RefTableName>
       <RefKeyName>PK_USERS</RefKeyName>
     </foreign-key>
-    <column id="92" parent="41" name="PAYMENT_ID">
+    <column id="93" parent="41" name="PAYMENT_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="93" parent="41" name="PAYDATE">
+    <column id="94" parent="41" name="PAYDATE">
       <Position>2</Position>
       <DataType>TIMESTAMP(6)|0</DataType>
     </column>
-    <column id="94" parent="41" name="AMOUNT">
+    <column id="95" parent="41" name="AMOUNT">
       <Position>3</Position>
       <DataType>NUMBER(7,2)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="41" name="PHONE_NUMBER">
+    <column id="96" parent="41" name="PHONE_NUMBER">
       <Position>4</Position>
       <DataType>VARCHAR2(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="96" parent="41" name="CARDNO">
+    <column id="97" parent="41" name="CARDNO">
       <Position>5</Position>
       <DataType>VARCHAR2(4)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="97" parent="41" name="TOKEN">
+    <column id="98" parent="41" name="TOKEN">
       <Position>6</Position>
       <DataType>VARCHAR2(25)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="98" parent="41" name="CARDNAME">
+    <column id="99" parent="41" name="CARDNAME">
       <Position>7</Position>
       <DataType>VARCHAR2(30)|0</DataType>
     </column>
-    <column id="99" parent="41" name="LOGIN">
+    <column id="100" parent="41" name="LOGIN">
       <Position>8</Position>
       <DataType>VARCHAR2(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="101" parent="42" name="LOGIN">
+      <Position>1</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="42" name="MAXDATE">
+      <Position>2</Position>
+      <DataType>TIMESTAMP(6)|0</DataType>
+    </column>
+    <column id="103" parent="42" name="STATUS_NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(12)|0</DataType>
       <NotNull>1</NotNull>
     </column>
   </database-model>
